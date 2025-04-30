@@ -1,0 +1,16 @@
+{
+    "signature_biryani": {
+        "title": "Signature Biryanis",
+        "items": [
+            {"id": 101, "name": "Hyderabadi Chicken Dum Biryani", "price": 280, "desc": "Authentic dum-style with tender chicken", "popular": true},
+            {"id": 102, "name": "Kachi Gosht Biryani", "price": 350, "desc": "Mutton marinated overnight and slow-cooked", "popular": true}
+        ]
+    },
+    "veg_specials": {
+        "title": "Vegetarian Specials",
+        "items": [
+            {"id": 201, "name": "Veg Dum Biryani", "price": 180, "desc": "Flavorful mix of vegetables and spices"},
+            {"id": 202, "name": "Paneer Biryani", "price": 220, "desc": "Cubes of paneer in aromatic rice", "popular": true}
+        ]
+    }
+}

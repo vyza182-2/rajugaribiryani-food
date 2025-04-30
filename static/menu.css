@@ -1,0 +1,92 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light background for contrast */
+    color: #ffffff; /* Dark text color */
+}
+
+.menu-page {
+    padding: 40px;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #dfdfdf; /* Bootstrap primary color */
+}
+
+/* Menu Card Styles */
+.menu-card {
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.menu-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.card {
+    border: 1px solid #007bff; /* Primary color border */
+    border-radius: 0.5rem; /* Rounded corners */
+}
+
+.card-body {
+    padding: 1.5rem; /* Padding inside the card */
+}
+
+/* Item Name and Price */
+.item-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.item-price {
+    font-size: 1.1rem;
+    color: #92381c; /* Green color for prices */
+}
+
+/* Quantity Controls */
+.item-quantity {
+    margin-top: 1rem;
+}
+
+.quantity-btn {
+    width: 40px; /* Fixed width for buttons */
+    height: 40px; /* Fixed height for buttons */
+}
+
+.quantity-input {
+    text-align: center; /* Center the input text */
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #c9ce25; /* Bootstrap primary color */
+    border-color: #b64301; /* Match border with background */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    border-color: #0056b3; /* Match border with background */
+}
+
+.btn-outline-secondary {
+    color: #6c757d; /* Default text color */
+    border-color: #6c757d; /* Default border color */
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d; /* Background color on hover */
+    color: white; /* White text on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-grid {
+        flex-direction: column; /* Stack items on smaller screens */
+    }
+
+    .menu-card {
+        margin-bottom: 20px; /* Space between stacked cards */
+    }
+}

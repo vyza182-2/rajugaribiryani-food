@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-5">About Raju Gari Biryani</h1>
+    
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <div class="image-container">
+        <div class="image-container text-center">
+
+            <img src="{{ url_for('static', filename='/images/logo.png') }}" alt="Raju Gari Biryani" class="centered-image">
+    
+        </div>
+
+        <div class="text-center mt-4">
+            <h2>Welcome to Raju Gari Biryani!</h2>
+            <p>Experience the authentic taste of Hyderabad with our signature biryani, crafted with love and tradition.</p>
+    
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Our Story</h2>
+            <p>Founded in 1995, Raju Gari Biryani brings the authentic taste of Hyderabad to your plate. Our recipes, passed down through generations, use secret spices and the traditional dum technique to create unforgettable flavors.</p>
+            <p>From our humble beginnings as a small eatery to becoming a beloved name in Hyderabad, we remain committed to quality, authenticity, and customer satisfaction.</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Our Mission</h2>
+            <p>We aim to deliver not just food, but an experience that celebrates Hyderabad’s rich culinary heritage. Using only the freshest ingredients, we ensure every bite is a journey to the heart of Telangana.</p>
+            <p>Join us in our passion for biryani and discover why Raju Gari Biryani is a household name!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

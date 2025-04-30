@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice {{ order["Order ID"] }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; }
+        h2 { text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h2>Raju Gari Biryani - Invoice</h2>
+    <p><strong>Order ID:</strong> {{ order["Order ID"] }}</p>
+    <p><strong>Customer:</strong> {{ order["Name"] }}</p>
+    <p><strong>Phone:</strong> {{ order["Phone"] }}</p>
+    <p><strong>Payment Method:</strong> {{ payment["Method"] }}</p>
+    <p><strong>Payment Time:</strong> {{ payment["Payment Time"] }}</p>
+
+    <h3>Order Details</h3>
+    <table>
+        <tr><th>Item</th><th>Qty</th><th>Subtotal</th></tr>
+        {% for item, qty in items_dict.items() %}
+        <tr>
+            <td>{{ item }}</td>
+            <td>{{ qty }}</td>
+            <td>₹{{ qty * menu[item] }}</td>
+        </tr>
+        {% endfor %}
+        <tr><td colspan="2"><strong>Total</strong></td><td><strong>₹{{ order["Total"] }}</strong></td></tr>
+        <a href="/invoice" class="btn">📄 Download Invoice (PDF)</a>
+    </table>
+</body>
+</html>

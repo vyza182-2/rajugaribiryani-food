@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<order>
+  <order_id>1</order_id>
+  <customer_name>vyza shiva kumar reddy</customer_name>
+  <phone>08187032002</phone>
+  <address>16-4, srinivas nagar colony, gajularamaram road, shapur nagar
+Near ramaram wines</address>
+  <order_date>2025-04-23 14:46:42</order_date>
+  <total>730</total>
+  <items>
+    <item>
+      <id>1</id>
+      <name>Hyderabadi Chicken Biryani</name>
+      <price>250</price>
+    </item>
+    <item>
+      <id>2</id>
+      <name>Mutton Biryani</name>
+      <price>300</price>
+    </item>
+    <item>
+      <id>4</id>
+      <name>Chicken 65</name>
+      <price>150</price>
+    </item>
+  </items>
+</order>

@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block title %}Order{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <!-- Menu Items Column -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white">
+                    <h1 class="h3 mb-0">Create Your Order</h1>
+                </div>
+                <div class="card-body">
+                    {% if menu_items %}
+                        <div class="accordion" id="menuAccordion">
+                            {% for category, category_data in menu_items.items() %}
+                            <div class="accordion-item border-0 mb-2">
+                                <h2 class="accordion-header" id="heading{{ loop.index }}">
+                                    <button class="accordion-button collapsed bg-light shadow-none" type="button" 
+                                            data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" 
+                                            aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+                                        <span class="fw-bold text-dark">{{ category_data.title }}</span>
+                                        <span class="badge bg-warning ms-2">{{ category_data['items']|length }} items</span>
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" 
+                                     aria-labelledby="heading{{ loop.index }}" data-bs-parent="#menuAccordion">
+                                    <div class="accordion-body p-0">
+                                        <div class="row row-cols-1 row-cols-md-2 g-3">
+                                            {% for item in category_data['items'] %}
+                                            <div class="col">
+                                                <div class="card h-100 border-0 hover-shadow menu-item" data-item-id="{{ item.id }}">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-between align-items-start">
+                                                            <div>
+                                                                <h5 class="card-title mb-1">{{ item.name }}</h5>
+                                                                <p class="text-muted small mb-2">{{ item.desc }}</p>
+                                                            </div>
+                                                            <span class="badge bg-light text-dark fs-6 item-price">₹{{ "%.2f"|format(item.price) }}</span>
+                                                        </div>
+                                                        <div class="input-group mt-2" style="max-width: 150px;">
+                                                            <button class="btn btn-outline-secondary minus-btn" type="button">-</button>
+                                                            <input type="number" name="quantity-{{ item.id }}" 
+                                                                   class="form-control text-center quantity-input" 
+                                                                   value="0" min="0" data-item-id="{{ item.id }}">
+                                                            <button class="btn btn-outline-secondary plus-btn" type="button">+</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <p class="text-muted mt-2">No menu items available at this time.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary Column -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm sticky-top" style="top: 20px;">
+                <div class="card-header bg-white">
+                    <h2 class="h4 mb-0">Order Summary</h2>
+                </div>
+                <div class="card-body">
+                    <form id="order-form" method="POST" action="/create_order">
+                        <div class="mb-4">
+                            <div id="order-items-container">
+                                <p class="text-muted" id="empty-cart-message">Your cart is empty</p>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between fw-bold fs-5">
+                                <span>Subtotal:</span>
+                                <span id="order-subtotal">₹0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-muted small">
+                                <span>Tax (10%):</span>
+                                <span id="order-tax">₹0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between fw-bold fs-5 mt-2">
+                                <span>Total:</span>
+                                <span id="order-total">₹0.00</span>
+                            </div>
+                        </div>
+
+                        <h3 class="h5 mt-4 mb-3">Delivery Details</h3>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="address" class="form-label">Delivery Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-warning w-100 py-2 fw-bold" id="place-order-btn" disabled>
+                            Place Order (₹<span id="submit-total">0.00</span>)
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-shadow:hover {
+        box-shadow: 0 0.5rem 1rem rgba(255, 92, 92, 0.1);
+        transition: all 0.3s ease;
+    }
+    .accordion-button:not(.collapsed) {
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+    .quantity-input {
+        -moz-appearance: textfield;
+    }
+    .quantity-input::-webkit-outer-spin-button,
+    .quantity-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const TAX_RATE = 0.10; // 10% tax
+        const orderItemsContainer = document.getElementById('order-items-container');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const orderSubtotalElement = document.getElementById('order-subtotal');
+        const orderTaxElement = document.getElementById('order-tax');
+        const orderTotalElement = document.getElementById('order-total');
+        const submitTotalElement = document.getElementById('submit-total');
+        const placeOrderBtn = document.getElementById('place-order-btn');
+        let cart = {};
+
+        // Handle "+" and "-" button clicks
+        document.querySelectorAll('.plus-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.parentNode.querySelector('.quantity-input');
+                let quantity = parseInt(input.value) + 1;
+                input.value = quantity;
+                updateCart(input);
+            });
+        });
+
+        document.querySelectorAll('.minus-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.parentNode.querySelector('.quantity-input');
+                let quantity = parseInt(input.value) - 1;
+                if (quantity < 0) quantity = 0;
+                input.value = quantity;
+                updateCart(input);
+            });
+        });
+
+        // Handle manual input changes
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.value < 0) this.value = 0;
+                updateCart(this);
+            });
+        });
+
+        function updateCart(inputElement) {
+            const itemId = inputElement.dataset.itemId;
+            const quantity = parseInt(inputElement.value);
+            const menuItem = inputElement.closest('.menu-item');
+            const itemName = menuItem.querySelector('.card-title').textContent;
+            const itemPrice = parseFloat(menuItem.querySelector('.item-price').textContent.replace('₹', '').trim());
+
+            if (quantity > 0) {
+                cart[itemId] = {
+                    id: itemId,
+                    name: itemName,
+                    price: itemPrice,
+                    quantity: quantity,
+                    total: (itemPrice * quantity).toFixed(2)
+                };
+            } else {
+                delete cart[itemId];
+            }
+
+            updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+            let subtotal = 0;
+            let itemsHTML = '';
+
+            Object.values(cart).forEach(item => {
+                subtotal += parseFloat(item.total);
+                itemsHTML += `
+                    <div class="order-item">
+                        <div class="d-flex justify-content-between">
+                            <span>${item.name} × ${item.quantity}</span>
+                            <span>₹${item.total}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            const tax = subtotal * TAX_RATE;
+            const total = subtotal + tax;
+
+            if (Object.keys(cart).length > 0) {
+                emptyCartMessage.style.display = 'none';
+                orderItemsContainer.innerHTML = itemsHTML;
+                placeOrderBtn.disabled = false;
+            } else {
+                emptyCartMessage.style.display = 'block';
+                orderItemsContainer.innerHTML = '<p class="text-muted" id="empty-cart-message">Your cart is empty</p>';
+                placeOrderBtn.disabled = true;
+            }
+
+            orderSubtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
+            orderTaxElement.textContent = `₹${tax.toFixed(2)}`;
+            orderTotalElement.textContent = `₹${total.toFixed(2)}`;
+            submitTotalElement.textContent = total.toFixed(2);
+        }
+    });
+</script>
+{% endblock %}

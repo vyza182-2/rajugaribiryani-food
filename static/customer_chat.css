@@ -1,0 +1,197 @@
+:root {
+    --primary-color: #7B3F00;
+    --accent-color: #C19A6B;
+    --background-color: #f9f5f0;
+    --user-bubble: #d0ebff;
+    --bot-bubble: #ffffff;
+    --border-color: #e0d7c6;
+}
+
+/* Reset basics */
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #f1f1f1;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.chat-container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);  /* Apply backdrop blur for frosted glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for contrast */
+}
+
+.title {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.restaurant-info {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.messages {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Chat Bubbles */
+.message {
+    max-width: 75%;
+    padding: 12px 18px;
+    border-radius: 20px;
+    line-height: 1.5;
+    position: relative;
+    word-wrap: break-word;
+    animation: slideFadeIn 0.4s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.customer-message {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #a0d8ef, #d0ebff);
+    color: #333;
+}
+
+.restaurant-message {
+    align-self: flex-start;
+    background-color: var(--bot-bubble);
+    color: #444;
+}
+
+/* New typing indicator */
+.typing-indicator {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: var(--bot-bubble);
+    border-radius: 20px;
+    max-width: 50px;
+    animation: fadeInTyping 0.3s ease forwards;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #999;
+    border-radius: 50%;
+    animation: bounce 1.2s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Input Area */
+.input-area {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+#userInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+}
+
+#userInput:focus {
+    border-color: var(--primary-color);
+}
+
+#sendButton {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#sendButton:hover {
+    background-color: var(--accent-color);
+}
+
+#sendButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes slideFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInTyping {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .chat-container {
+        padding: 15px;
+    }
+
+    .messages {
+        height: 300px;
+    }
+}
+
+/* Logo styling */
+.logo img {
+    max-width: 100px;         /* Limiting width of the logo */
+    height: auto;             /* Maintaining aspect ratio */
+    margin: 0 auto;           /* Center the logo */
+    display: block;           /* Ensuring it behaves like a block element */
+}

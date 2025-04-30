@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Order Payment{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/payment.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container mt-5">
+    <h2 class="mb-4">Payment for Order ID: <strong>{{ order_id }}</strong></h2>
+    <p>Total Amount: <strong>₹{{ total }}</strong></p>
+    <p>Scan the QR code below to pay via UPI:</p>
+    <p class="text-danger">Note: Please do not refresh the page while making the payment.</p>
+
+
+    <img src="{{ url_for('static', filename='qr_' + order_id + '.png') }}" width="200" alt="QR Code">
+    <p class="text-danger">If the QR code is not visible, please try again.</p>
+    
+    
+
+    <form action="/confirm_payment" method="post">
+        <input type="hidden" name="order_id" value="{{ order_id }}">
+        <input type="hidden" name="amount" value="{{ total }}">
+        <button type="submit" class="btn btn-warning">I Paid</button>
+       
+    </form>
+
+    <p class="mt-4">Or pay via UPI ID: <strong>vyza.18@kotak</strong></p>
+    <p class="mt-4 text-success thank-you">After payment, show this screen at the counter. Thank you!</p>
+</div>
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #9e1d00e4;
+        color: #ffffff;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block title %}Raju Gari Biryani | Authentic Hyderabadi Cuisine{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section py-5">
+    <div class="container py-5 text-center text-white">
+        <h1 class="display-3 fw-bold mb-4">Raju Gari Biryani</h1>
+        <p class="lead mb-4">Experience the Royal Taste of Hyderabad</p>
+        <a href="/menu" class="btn btn-warning btn-lg px-4">Order Now</a>
+    </div>
+</section>
+
+<!-- Featured Dishes -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Signature Dishes</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/Biryani.jpg') }}" class="card-img-top" alt="Hyderabadi Chicken Biryani">
+                    <div class="card-body">
+                        <h5 class="card-title">Hyderabadi Chicken Biryani</h5>
+                        <p class="card-text text-muted">Slow-cooked with aromatic spices and basmati rice.</p>
+                        <p class="text-warning fw-bold">₹250</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/Mutton Dum Biryani.jpg') }}" class="card-img-top" alt="Mutton Dum Biryani">
+                    <div class="card-body">
+                        <h5 class="card-title">Mutton Dum Biryani</h5>
+                        <p class="card-text text-muted">Tender mutton marinated in royal spices.</p>
+                        <p class="text-warning fw-bold">₹350</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/veg.png') }}" class="card-img-top" alt="Vegetable Biryani">
+                    <div class="card-body">
+                        <h5 class="card-title">Vegetable Biryani</h5>
+                        <p class="card-text text-muted">Flavorful biryani with fresh vegetables.</p>
+                        <p class="text-warning fw-bold">₹180</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="/menu" class="btn btn-outline-warning">View Full Menu</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Us -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="{{ url_for('static', filename='images/Restaurant Interior.png') }}" class="img-fluid rounded shadow" alt="Our Restaurant">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-4">About Raju Gari Biryani</h2>
+                <p class="lead">Founded in 1995, we bring the authentic flavors of Hyderabad to your plate.</p>
+                <p>Our secret recipes are passed down through generations, using traditional dum cooking methods that make our biryani truly special.</p>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-check text-warning me-2"></i> 100% Halal Meat</li>
+                    <li class="mb-2"><i class="fas fa-check text-warning me-2"></i> Fresh Ingredients Daily</li>
+                    <li class="mb-2"><i class="fas fa-check text-warning me-2"></i> Traditional Dum Cooking</li>
+                    <li class="mb-2"><i class="fas fa-check text-warning me-2"></i> Family Recipes</li>
+                </ul>
+                <div class="d-flex gap-3">
+                    <a href="/about" class="btn btn-warning mt-3">Our Story</a>
+                    <a href="/contact" class="btn btn-outline-dark mt-3">Visit Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="text-center mb-5">What Our Customers Say</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="d-flex mb-3">
+                        <i class="fas fa-quote-left text-warning me-3 fs-4"></i>
+                        <div>
+                            <h5 class="mb-1">Best Biryani in Town!</h5>
+                            <div class="text-warning mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted">The mutton biryani is absolutely divine. Takes me back to Hyderabad every time I eat it.</p>
+                    <p class="fw-bold mt-auto mb-0">- Ramesh K.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="d-flex mb-3">
+                        <i class="fas fa-quote-left text-warning me-3 fs-4"></i>
+                        <div>
+                            <h5 class="mb-1">Authentic Flavor</h5>
+                            <div class="text-warning mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted">As someone from Hyderabad, I can vouch for the authenticity of their recipes.</p>
+                    <p class="fw-bold mt-auto mb-0">- Priya S.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="d-flex mb-3">
+                        <i class="fas fa-quote-left text-warning me-3 fs-4"></i>
+                        <div>
+                            <h5 class="mb-1">Consistently Great</h5>
+                            <div class="text-warning mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted">Been ordering from Raju Gari for years. Never had a bad experience.</p>
+                    <p class="fw-bold mt-auto mb-0">- Arun M.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-warning py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Craving Biryani Now?</h2>
+        <p class="lead mb-4">Order online or visit us today!</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="/contact" class="btn btn-dark btn-lg px-4">Book a Table</a>
+            <a href="tel:+919876543210" class="btn btn-outline-dark btn-lg px-4"><i class="fas fa-phone me-2"></i> Call Us</a>
+            <a href="/menu" class="btn btn-dark btn-lg px-4"><i class="fas fa-utensils me-2"></i> Order Online</a>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

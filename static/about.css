@@ -1,0 +1,61 @@
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff8f0; /* soft warm off-white */
+    color: #333333; /* dark gray for readability */
+}
+
+.image-container {
+    text-align: center; /* Center the image within the container */
+    margin: 20px 0; /* Optional: Add some vertical spacing */
+}
+
+.centered-image {
+    max-width: 46%; /* Ensure the image is responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+h2 {
+    color: #ff3c3c; /* warm deep red accent */
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Paragraph Styling */
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ffffff; /* dark shade for paragraphs */
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+/* Optional: Add subtle animation */
+.row {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

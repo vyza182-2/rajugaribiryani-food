@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+    
+    <h1 class="text-center mb-5" style="color: #333;">Contact Us</h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="contact-card">
+                <h3>Get in Touch</h3>
+                <p>Have a question or feedback? Reach out to us!</p>
+                <form method="POST" action="{{ url_for('contact') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name*</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email*</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message*</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="contact-card">
+                <h3>Contact Details</h3>
+                <p><strong>Phone:</strong> +91 9876543210</p>
+                <p><strong>Email:</strong> info@rajugaribiryani.com</p>
+                <p><strong>Address:</strong> 123 Flavor Street, Hyderabad, Telangana, India</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

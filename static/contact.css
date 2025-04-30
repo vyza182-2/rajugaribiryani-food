@@ -1,0 +1,94 @@
+/* Elegant Contact Page Styling for Raju Gari Biryani */
+
+body {
+    background: linear-gradient(135deg, #fff5e6 0%, #fff 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #2c2c2c;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #333232;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease-in-out;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #b44d00;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: #d2691e;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1rem;
+    color: #cacaca;
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #998989;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+    outline: none;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.contact-details p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+}
